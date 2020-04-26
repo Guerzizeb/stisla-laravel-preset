@@ -1,0 +1,60 @@
+<?php
+
+namespace {{namespace}}Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use {{namespace}}Http\Controllers\Controller;
+use {{namespace}}Http\Requests\Profile\ChangePasswordRequest;
+
+class ProfileController extends Controller
+{
+
+    public function index(Request $request)
+    {
+        return view('profile.index',  ['user' => $request->user()]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = $request->user();
+
+        try {
+            $user->fill($request->all());
+            $user->email = $request->get('email');
+            $user->save();
+            return redirect()->route('profile')
+                        ->with('message_type', 'success')
+                        ->with('message', __('Profile updated successfully'));
+        } catch (\Exception $e) {
+            \Log::error('Cannot update profile: '.$e->getMessage());
+            return redirect()->back()->withInput()
+                        ->with('message_type', 'error')
+                        ->with('message', __('Could not update the profile'));
+        }
+    }
+
+    public function updatePassword(ChangePasswordRequest $request)
+    {
+        $user = $request->user();
+
+        try {
+            $user->password = bcrypt($request->get('password'));
+            $user->save();
+            return redirect()->route('profile')
+                        ->with('message_type', 'success')
+                        ->with('message', __('Password changed successfully'));
+        } catch (\Exception $e) {
+            \Log::error('Cannot update password: '.$e->getMessage());
+            return redirect()->back()->withInput()
+                        ->with('message_type', 'error')
+                        ->with('message', __('Could not change the password'));
+        }
+    }
+
+}

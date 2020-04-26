@@ -1,0 +1,34 @@
+{
+    "name": "guerzizeb/stisla-laravel-preset",
+    "description": "Laravel custom UI Preset from Stisla Open Source",
+    "type": "library",
+    "keywords": ["laravel", "preset", "stisla"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Brahim GUERZIZE",
+            "email": "guerzizeb@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "laravel/ui": "^1.1 | ^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Guerzizeb\\LaravelPreset\\Stisla\\": "src/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Guerzizeb\\LaravelPreset\\Stisla\\StislaPresetServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
