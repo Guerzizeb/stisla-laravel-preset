@@ -17,9 +17,19 @@ php artisan ui stisla [--auth]
 
 Then run 
 ```
-"npm install && npm run dev"
+npm install
+```
+```
+npm run dev
 ```
 to compile your fresh scaffolding
+
+# Add auth view
+you can auth views later by running
+```
+php artisan stisla:auth [--force]
+```
+
 
 ## License
 
