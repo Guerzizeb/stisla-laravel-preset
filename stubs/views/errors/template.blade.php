@@ -452,6 +452,10 @@
             .md\:w-1\/2 {
                 width: 50%;
             }
+
+            .md\:w-1\/3 {
+                width: 33%;
+            }
         }
 
         @media (min-width: 992px) {
@@ -480,11 +484,11 @@
                         class="bg-transparent text-grey-darkest font-bold uppercase tracking-wide py-3 px-6 border-2 border-grey-light hover:border-grey rounded-lg">
                         Go Home
                     </button>
-                </a>
+                </a>               
             </div>
         </div>
 
-        <div class="relative pb-full md:flex md:pb-0 md:min-h-screen w-full md:w-1/2">
+        <div class="relative pb-full md:flex md:pb-0 md:min-h-screen w-full">
             <div class="absolute pin bg-cover bg-no-repeat md:bg-left lg:bg-center error-bg">
             </div>
         </div>

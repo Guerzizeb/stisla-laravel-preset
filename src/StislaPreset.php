@@ -74,14 +74,9 @@ class StislaPreset extends Preset
 
     public static function setupErrorsHandler()
     {
-        /*
         copy(static::STUBSPATH.'/errors/Handler.stub', app_path('Exceptions/Handler.php'));
 
-        //copy(static::STUBSPATH.'/views/errors/template.blade.php', resource_path('views/errors/template.blade.php'));
-      
-        $filesystem = new Filesystem;
-        $filesystem->copyDirectory(static::STUBSPATH.'/views/errors', resource_path('views/errors'));
-        */
+        copy(static::STUBSPATH.'/views/errors/template.blade.php', resource_path('views/errors/template.blade.php'));      
     }
 
     /**
@@ -111,6 +106,7 @@ class StislaPreset extends Preset
      */
     protected static function ensureDirectoriesExist()
     {
+
         if (! is_dir($directory = static::getViewPath('layouts'))) {
             mkdir($directory, 0755, true);
         }
@@ -123,7 +119,7 @@ class StislaPreset extends Preset
             mkdir($directory, 0755, true);
         }
 
-        if (! is_dir($directory = static::getViewPath('errors'))) {
+        if (! is_dir($directory = resource_path('views/errors'))) {
             mkdir($directory, 0755, true);
         }
     }
@@ -139,6 +135,6 @@ class StislaPreset extends Preset
         return implode(DIRECTORY_SEPARATOR, [
             config('view.paths')[0] ?? resource_path('views'), $path,
         ]);
-    }
+    } 
 
 }
