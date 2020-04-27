@@ -3,6 +3,7 @@
 namespace Guerzizeb\LaravelPreset\Stisla;
 
 use Guerzizeb\LaravelPreset\Stisla\StislaAuth;
+use Guerzizeb\LaravelPreset\Stisla\StislaErrors;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Laravel\Ui\UiCommand;
@@ -44,8 +45,8 @@ class StislaPresetServiceProvider extends ServiceProvider
     public function register()
     {
         if ($this->app->runningInConsole()) {
-            $this->commands([
-                StislaAuth::class,
+            $this->commands([ 
+                StislaAuth::class,            
             ]);
         }
     }

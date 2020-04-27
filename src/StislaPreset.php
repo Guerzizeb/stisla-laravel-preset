@@ -22,7 +22,8 @@ class StislaPreset extends Preset
         static::updatePackages();
         static::updateAssets();
         static::updateWebpackConfiguration();
-        
+        static::setupErrorsHandler();
+
         //static::removeNodeModules();
     }
 
@@ -71,6 +72,18 @@ class StislaPreset extends Preset
         $filesystem->copyDirectory(static::STUBSPATH.'/views/auth', resource_path('views/layouts'));
     }
 
+    public static function setupErrorsHandler()
+    {
+        /*
+        copy(static::STUBSPATH.'/errors/Handler.stub', app_path('Exceptions/Handler.php'));
+
+        //copy(static::STUBSPATH.'/views/errors/template.blade.php', resource_path('views/errors/template.blade.php'));
+      
+        $filesystem = new Filesystem;
+        $filesystem->copyDirectory(static::STUBSPATH.'/views/errors', resource_path('views/errors'));
+        */
+    }
+
     /**
      * Update the bootstrapping files.
      *
@@ -107,6 +120,10 @@ class StislaPreset extends Preset
         }
 
         if (! is_dir($directory = resource_path('libraries'))) {
+            mkdir($directory, 0755, true);
+        }
+
+        if (! is_dir($directory = static::getViewPath('errors'))) {
             mkdir($directory, 0755, true);
         }
     }

@@ -50,6 +50,7 @@ class StislaAuth extends AuthCommand
      */
     public function handle()
     {
+
         $this->ensureDirectoriesExist();
         $this->ensureStislaDirectoriesExist();
         $this->exportViews();
